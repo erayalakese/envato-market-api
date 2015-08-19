@@ -34,41 +34,35 @@ class Envato_Market_API
 
 	function request($url, $decode_json=false)
 	{
-		$context = stream_context_create(array(
-				'http'=>array(
-				    'method'=>"GET",
-				    'header'=>"Authorization: Bearer ".$this->personal_token
-				  )
-			));
+		if(function_exists('curl_version')) :
+			// Use cURL if possible
+			$CURL = curl_init();
+			curl_setopt($CURL, CURLOPT_URL, $url);
+			curl_setopt($CURL, CURLOPT_HEADER, 1);
+			curl_setopt($CURL, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $this->personal_token)); 
+			curl_setopt($CURL, CURLOPT_RETURNTRANSFER, 1);
+			$data = curl_exec($CURL);
+			curl_close($CURL);
+		else :
+			// Use file_get_contents instead
+			$context = stream_context_create(array(
+					'http'=>array(
+					    'method'=>"GET",
+					    'header'=>"Authorization: Bearer ".$this->personal_token
+					  )
+				));
 
-		$x = file_get_contents($url, false, $context);
+			$data = file_get_contents($url, false, $context);
+		endif;
 
 		if($decode_json)
-			return json_decode($x);
+			return json_decode($data);
 		else
-			return $x;
+			return $data;
 	}
 
 	function download()
 	{
 		header('Location: '.$this->download_url);
 	}
-
-	/*function download()
-	{
-		$url = $this->download_url;
-		$file_name = explode("?", pathinfo($url)["basename"])[0];
-
-		$target = fopen($file_name, 'w');
-
-		if($f = fopen($url, "r"))
-		{
-		    while(!feof($f)) {
-		        $buffer = fread($f, 2048);
-		        fwrite($target, $buffer, 2048);
-		    }
-		}
-		fclose($f);
-		fclose($target);
-	}*/
 }

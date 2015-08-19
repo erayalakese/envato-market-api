@@ -8,7 +8,7 @@
  */
 class Envato_Market_API
 {
-	private $personal_token = "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4";
+	private $personal_token;
 	private $api_url = "https://api.envato.com/v1/market";
 	private $download_url;
 
@@ -71,5 +71,10 @@ class Envato_Market_API
 	function download()
 	{
 		header('Location: '.$this->download_url);
+	}
+
+	function set_personal_token($token)
+	{
+		$this->personal_token = $token;
 	}
 }

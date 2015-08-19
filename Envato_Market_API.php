@@ -1,4 +1,11 @@
 <?php
+/**
+ * Envato Market API to verify and download Envato purchases
+ *
+ * @author Eray Alakese <erayalakese@gmail.com>
+ * @version 1.0.0
+ * @license GPL v2
+ */
 class Envato_Market_API
 {
 	private $personal_token = "GTTTePxFvxlTacMrB5I3qqPtCd4D0Po4";

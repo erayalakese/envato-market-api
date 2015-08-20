@@ -1,13 +1,14 @@
 <?php
-namespace erayalakese;
-
 /**
  * Envato Market API to verify and download Envato purchases
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.1.1
+ * @version 1.1.2
  * @license GPL v2
  */
+
+namespace erayalakese;
+
 class Envato_Market_API
 {
 	private $personal_token;

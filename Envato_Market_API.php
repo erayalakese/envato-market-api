@@ -1,4 +1,6 @@
 <?php
+namespace erayalakese;
+
 /**
  * Envato Market API to verify and download Envato purchases
  *

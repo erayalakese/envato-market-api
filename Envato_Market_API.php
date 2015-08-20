@@ -1,9 +1,11 @@
 <?php
+namespace erayalakese;
+
 /**
  * Envato Market API to verify and download Envato purchases
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.0.0
+ * @version 1.1.1
  * @license GPL v2
  */
 class Envato_Market_API

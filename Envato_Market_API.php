@@ -3,7 +3,7 @@
  * Envato Market API to verify and download Envato purchases
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.1.2
+ * @version 1.2.0
  * @license GPL v2
  */
 
@@ -15,13 +15,19 @@ class Envato_Market_API
 	private $api_url = "https://api.envato.com/v1/market";
 	private $download_url;
 
+	function __construct($personal_token)
+	{
+		$this->set_personal_token($personal_token);
+	}
+
 	function verify_purchase_code($code)
 	{
+		// Verify method deprecated. This method will removed.
 		//(strlen($code) != 36) ? return false; : '';
 
 		$url = sprintf("%s/private/user/verify-purchase:%s.json", $this->api_url, $code);
 
-		$x = $this->request($url);
+		//$x = $this->request($url);
 		//var_dump($x);
 
 		return TRUE;
@@ -48,7 +54,7 @@ class Envato_Market_API
 			// Use cURL if possible
 			$CURL = curl_init();
 			curl_setopt($CURL, CURLOPT_URL, $url);
-			curl_setopt($CURL, CURLOPT_HEADER, 1);
+			curl_setopt($CURL, CURLOPT_HEADER, 0);
 			curl_setopt($CURL, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $this->personal_token)); 
 			curl_setopt($CURL, CURLOPT_RETURNTRANSFER, 1);
 			$data = curl_exec($CURL);
@@ -73,7 +79,8 @@ class Envato_Market_API
 
 	function download()
 	{
-		header('Location: '.$this->download_url);
+		wp_redirect($this->download_url);
+		exit;
 	}
 
 	function set_personal_token($token)

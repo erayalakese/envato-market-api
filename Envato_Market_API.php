@@ -3,7 +3,7 @@
  * Envato Market API to verify and download Envato purchases
  *
  * @author Eray Alakese <erayalakese@gmail.com>
- * @version 1.2.0
+ * @version 1.2.1
  * @license GPL v2
  */
 

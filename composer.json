@@ -8,5 +8,8 @@
         }
     ],
     "require": {},
-    "license": "GPL v2"
+    "license": "GPL v2",
+    "autoload": {
+        "classmap": ["Envato_Market_API.php"]
+    }
 }
